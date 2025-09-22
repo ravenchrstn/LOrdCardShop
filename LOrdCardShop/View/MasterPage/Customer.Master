@@ -1,0 +1,90 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Customer.Master.cs" Inherits="LOrdCardShop.CustomerMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <title>LOrd Card Shop</title>
+    <style>
+        @font-face {
+            font-family: 'power_clear';
+            src: url("../Font/power_clear.ttf") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'power_clear_bold';
+            src: url("../Font/power_clear_bold.ttf") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'OpenSans-Regular';
+            src: url("../Font/OpenSans-Regular.ttf") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .open-sans-normal {
+            font-family: 'OpenSans-Regular', sans-serif;
+        }
+
+        .searchBox {
+            width: 225px;
+            height: 30px;
+            font-size: 15px;
+        }
+
+        .nav-item {
+            font-size: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server" style="background-color: #121213; min-height: 100vh">
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
+                <div class="container">
+                    <a class="navbar-brand fw-bold" href="../Home/Home_Customer.aspx">LOrd Card Shop</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                        <ul class="navbar-nav ms-auto gap-3 align-items-center">
+                            <li class="nav-item"><asp:TextBox ID="searchBox" CssClass="form-control searchBox" placeholder="Card Name" runat="server"></asp:TextBox></li>
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" Style="display: none;" />
+                            <li class="nav-item"><asp:HyperLink ID="homeHL" class="nav-link" NavigateUrl="~/View/Home/Home_Customer.aspx" runat="server">Home</asp:HyperLink>
+                            <li class="nav-item"><asp:HyperLink ID="profileHL" class="nav-link" NavigateUrl="~/View/Profile/Profile_Customer.aspx" runat="server">Profile</asp:HyperLink></li>
+                            <li class="nav-item"><asp:HyperLink ID="orderCardHL" class="nav-link" NavigateUrl="~/View/CardView/OrderCard.aspx" runat="server">Order Card</asp:HyperLink></li>
+                            <li class="nav-item"><asp:HyperLink ID="transactionReportHL" class="nav-link" NavigateUrl="~/View/TransactionHistory/TransactionHistory_Customer.aspx" runat="server">Transaction History</asp:HyperLink></li>
+                            <li class="nav-item"><asp:HyperLink ID="cartHL" class="nav-link" NavigateUrl="~/View/CartView.aspx" runat="server">Cart</asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="logout" CssClass="nav-link" runat="server" Text="Logout" OnClick="logout_Click"></asp:LinkButton>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="content container-fluid">
+            <asp:ContentPlaceHolder ID="masterContentCustomer" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <script>
+        function TriggerSearch(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                document.getElementById('<%= btnSearch.ClientID %>').click();
+            }
+        }
+    </script>
+</body>
+</html>
